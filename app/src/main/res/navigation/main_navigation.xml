@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/bill_fragment">
+
+    <fragment
+        android:name="mx.mcardenas.mediagua.BillFragment"
+        android:id="@+id/bill_fragment"
+        android:label="@string/bill"
+        />
+</navigation>

@@ -1,13 +1,13 @@
 package mx.mcardenas.mediagua;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.view.View;
 
-import java.io.FileInputStream;
-import java.util.Properties;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
-import io.particle.android.sdk.cloud.BuildConfig;
 import mx.mcardenas.mediagua.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +18,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        NavController navController = NavHostFragment.findNavController(binding.navContainer.getFragment());
+        NavigationUI.setupWithNavController(binding.mainNavigation, navController);
 
+        binding.topbar.setNavigationOnClickListener(this::openNavigation);
+    }
+
+    private void openNavigation(View view) {
+        binding.drawerLayout.open();
     }
 }

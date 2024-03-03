@@ -8,8 +8,9 @@ android {
     namespace = "mx.mcardenas.mediagua"
     compileSdk = 34
 
-    dataBinding {
-        enable = true
+    buildFeatures {
+        buildConfig = true
+        dataBinding = true
     }
 
     defaultConfig {
@@ -38,6 +39,7 @@ android {
 }
 
 dependencies {
+    // implementation("com.twilio:voice-android:5.7.2")
     implementation("androidx.navigation:navigation-fragment:2.7.7")
     implementation("androidx.navigation:navigation-ui:2.7.7")
     implementation("io.particle:cloudsdk:1.0.1")
