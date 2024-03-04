@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="consumption">Consumption</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="other">Other</string>
+    <string name="monitor">Monitor</string>
+    <string name="bill">Bill</string>
+    <string name="notificaciones">Notifications</string>
+</resources>

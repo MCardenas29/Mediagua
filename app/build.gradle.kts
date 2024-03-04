@@ -1,7 +1,9 @@
 import java.util.Properties
 
 plugins {
+    id("com.google.devtools.ksp")
     id("com.android.application")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -40,6 +42,8 @@ android {
 
 dependencies {
     // implementation("com.twilio:voice-android:5.7.2")
+    ksp("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("com.google.dagger:hilt-android:2.44")
     implementation("androidx.navigation:navigation-fragment:2.7.7")
     implementation("androidx.navigation:navigation-ui:2.7.7")
     implementation("io.particle:cloudsdk:1.0.1")
@@ -51,3 +55,4 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }
+

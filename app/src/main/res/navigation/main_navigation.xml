@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/bill_fragment">
+    app:startDestination="@id/bill"
+    >
 
     <fragment
         android:name="mx.mcardenas.mediagua.BillFragment"
-        android:id="@+id/bill_fragment"
+        android:id="@+id/bill"
         android:label="@string/bill"
+        tools:layout="@layout/fragment_bill"
+        />
+    <fragment
+        android:id="@+id/consume"
+        android:name="mx.mcardenas.mediagua.ConsumeFragment"
+        android:label="fragment_consume"
+        tools:layout="@layout/fragment_consume"
         />
 </navigation>

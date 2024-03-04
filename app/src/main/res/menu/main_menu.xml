@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:id="@+id/management" android:checkableBehavior="single">
-        <item
-            android:id="@+id/bill"
-            android:icon="@drawable/outline_payments_24"
-            android:title="@string/bill"
-            android:checkable="true"
-            />
-        <item
-            android:id="@+id/consume"
-            android:icon="@drawable/outline_area_chart_24"
-            android:title="@string/consumption"
-            android:checkable="true"
-            />
-    </group>
-    <group android:id="@+id/extra" android:checkableBehavior="single">
-        <item
-            android:id="@+id/settings"
-            android:icon="@drawable/outline_settings_24"
-            android:title="@string/settings"
-            android:checkable="true"
-            />
-        <item
-            android:id="@+id/about"
-            android:icon="@drawable/outline_info_24"
-            android:title="@string/about"
-            android:checkable="true"
-            />
-    </group>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <item
+        android:id="@+id/bill"
+        android:icon="@drawable/outline_payments_24"
+        android:title="@string/bill"
+        android:checkable="true"
+        />
+    <item
+        android:id="@+id/consume"
+        android:icon="@drawable/outline_area_chart_24"
+        android:title="@string/consumption"
+        android:checkable="true"
+        />
+    <item android:title="@string/other">
+        <menu>
+            <item
+                android:id="@+id/settings"
+                android:icon="@drawable/outline_settings_24"
+                android:title="@string/settings"
+                android:checkable="true"
+                />
+            <item
+                android:id="@+id/about"
+                android:icon="@drawable/outline_info_24"
+                android:title="@string/about"
+                android:checkable="true"
+                />
+        </menu>
+    </item>
 </menu>

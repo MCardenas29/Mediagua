@@ -10,17 +10,17 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link BillFragment#newInstance} factory method to
+ * Use the {@link ConsumeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BillFragment extends Fragment {
+public class ConsumeFragment extends Fragment {
 
-    public BillFragment() {
+    public ConsumeFragment() {
         // Required empty public constructor
     }
 
-    public static BillFragment newInstance() {
-        BillFragment fragment = new BillFragment();
+    public static ConsumeFragment newInstance() {
+        ConsumeFragment fragment = new ConsumeFragment();
         return fragment;
     }
 
@@ -30,16 +30,15 @@ public class BillFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bill, container, false);
-    }
-
-    @Override
     public void onStart() {
         super.onStart();
         MainActivity activity = (MainActivity) getActivity();
-        activity.toolbarViewModel.setTitle(getString(R.string.bill));
+        activity.toolbarViewModel.setTitle(getString(R.string.consumption));
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_consume, container, false);
     }
 }

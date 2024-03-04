@@ -6,6 +6,10 @@
     tools:context=".MainActivity"
     >
     <data>
+        <variable
+            name="toolbar"
+            type="mx.mcardenas.mediagua.viewmodels.ToolbarViewModel"
+            />
     </data>
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
@@ -17,8 +21,8 @@
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             >
+
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -27,35 +31,34 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="?attr/actionBarSize"
-                    android:id="@+id/topbar"
-                    app:title="@string/app_name"
+                    android:id="@+id/app_toolbar"
+                    app:title="@{toolbar.title}"
                     app:navigationIcon="@drawable/outline_menu_24"
+                    app:menu="@menu/toolbar_menu"
                     />
             </com.google.android.material.appbar.AppBarLayout>
-            <androidx.core.widget.NestedScrollView
+
+            <androidx.fragment.app.FragmentContainerView
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                app:defaultNavHost="true"
+                android:id="@+id/fragment_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:navGraph="@navigation/main_navigation"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-                >
-                <androidx.fragment.app.FragmentContainerView
-                    android:name="androidx.navigation.fragment.NavHostFragment"
-                    app:defaultNavHost="true"
-                    android:id="@+id/nav_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:navGraph="@navigation/main_navigation"
-                    />
-            </androidx.core.widget.NestedScrollView>
+                />
+
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
         <com.google.android.material.navigation.NavigationView
-            app:headerLayout="@layout/navview_main_header"
+            android:id="@+id/navigation_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:id="@+id/main_navigation"
+            app:headerLayout="@layout/drawer_main"
             app:menu="@menu/main_menu"
+            android:checked="true"
             />
-        <!--            tools:visibility="gone"-->
+        <!-- tools:visibility="gone" -->
     </androidx.drawerlayout.widget.DrawerLayout>
 
 </layout>
