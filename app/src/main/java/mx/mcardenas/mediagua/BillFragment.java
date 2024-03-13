@@ -42,4 +42,5 @@ public class BillFragment extends Fragment {
         MainActivity activity = (MainActivity) getActivity();
         activity.toolbarViewModel.setTitle(getString(R.string.bill));
     }
+
 }
