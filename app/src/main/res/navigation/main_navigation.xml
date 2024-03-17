@@ -7,14 +7,14 @@
     >
 
     <fragment
-        android:name="mx.mcardenas.mediagua.BillFragment"
+        android:name="mx.mcardenas.mediagua.fragments.BillFragment"
         android:id="@+id/bill"
         android:label="@string/bill"
         tools:layout="@layout/fragment_bill"
         />
     <fragment
         android:id="@+id/consume"
-        android:name="mx.mcardenas.mediagua.ConsumeFragment"
+        android:name="mx.mcardenas.mediagua.fragments.ConsumeFragment"
         android:label="fragment_consume"
         tools:layout="@layout/fragment_consume"
         />

@@ -1,4 +1,4 @@
-package mx.mcardenas.mediagua;
+package mx.mcardenas.mediagua.activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -12,13 +12,14 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.badge.BadgeUtils;
 
+import mx.mcardenas.mediagua.R;
 import mx.mcardenas.mediagua.databinding.ActivityMainBinding;
 import mx.mcardenas.mediagua.viewmodels.ToolbarViewModel;
 
 public class MainActivity extends AppCompatActivity {
-    ActivityMainBinding binding;
-    ToolbarViewModel toolbarViewModel;
-    BadgeDrawable iconBadge;
+    public ToolbarViewModel toolbarViewModel;
+    private ActivityMainBinding binding;
+    private BadgeDrawable iconBadge;
 
     @SuppressLint("UnsafeOptInUsageError")
     @Override

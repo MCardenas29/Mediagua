@@ -1,5 +1,6 @@
 <resources>
     <declare-styleable name="GraphBars">
-        <attr name="currentConsumption" format="float" />
+        <attr name="topValue" format="float" />
+        <attr name="divisions" format="integer" />
     </declare-styleable>
 </resources>

@@ -1,6 +1,5 @@
 <resources>
     <style name="Widget.Theme.Mediagua.MyView" parent="">
         <item name="android:background">#F0F0F0</item>
-        <item name="currentConsumption">0.0</item>
     </style>
 </resources>

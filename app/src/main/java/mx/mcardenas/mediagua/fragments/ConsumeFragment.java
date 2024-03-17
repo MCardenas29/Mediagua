@@ -1,4 +1,4 @@
-package mx.mcardenas.mediagua;
+package mx.mcardenas.mediagua.fragments;
 
 import android.os.Bundle;
 
@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import mx.mcardenas.mediagua.R;
+import mx.mcardenas.mediagua.activities.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.

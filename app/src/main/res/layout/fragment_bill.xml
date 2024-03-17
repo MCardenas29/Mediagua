@@ -1,16 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<layout
+    tools:ignore="HardcodedText"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".BillFragment"
     >
-
-    <mx.mcardenas.mediagua.GraphBars
-        style="@style/Widget.Theme.Mediagua.MyView"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="380dp"
+        android:layout_height="match_parent"
+        tools:context=".fragments.BillFragment"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:clipToPadding="false"
+                >
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.Material3.CardView.Elevated"
+                    >
+                    <ImageView
+                        android:id="@+id/water"
+                        android:src="@drawable/water"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:scaleY="1.15"
+                        />
+                    <LinearLayout
+                        android:padding="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            tools:ignore="UseCompoundDrawables">
+                            <ImageView
+                                android:layout_width="9pt"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/outline_water_drop_24"
+                                android:adjustViewBounds="true"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="120 m³"
+                                style="@style/TextAppearance.Material3.LabelLarge"
+                                android:layout_gravity="center"
+                                />
+                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TextAppearance.Material3.ActionBar.Title"
+                            android:text="$ 120,000.00"
+                            android:textStyle="bold"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TextAppearance.Material3.LabelMedium"
+                            android:text="Excedente"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TextAppearance.Material3.LabelMedium"
+                            android:text="Tarifa: Domestica A"
+                            />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="-30dp"
+                    android:layout_centerVertical="true"
+                    android:translationZ="1dp"
+                    android:id="@+id/stopcock_switch"
+                    >
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/pvcpipe"
+                        android:contentDescription="stopCockBody"
+                        />
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/handle"
+                        android:id="@+id/handle"
+                        android:contentDescription="stopCockHandle"
+                        />
+                </RelativeLayout>
+            </RelativeLayout>
+            <mx.mcardenas.mediagua.views.GraphBars
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@color/md_theme_light_primaryContainer"
+                />
 
-        />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <!-- -->
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

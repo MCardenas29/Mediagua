@@ -1,25 +1,26 @@
-package mx.mcardenas.mediagua;
+package mx.mcardenas.mediagua.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.View;
+
+import mx.mcardenas.mediagua.BackgroundGradient;
+import mx.mcardenas.mediagua.R;
 
 public class GraphBars extends View {
     private final float PADDING = 5.0f;
     private final float GAP = 8.0f;
     private final int MIN_HEIGHT = 200;
-    private final Color bottomBarColor = Color.valueOf();
+    public final int BOTTOM_HEIGHT = 60;
 
     private float mCurrentConsumption = 0;
-    private Drawable faucet;
 
-    private TextPaint textPaint;
+    private BackgroundGradient background;
+
 
     public GraphBars(Context context) {
         super(context);
@@ -41,28 +42,13 @@ public class GraphBars extends View {
         final TypedArray a = getContext().obtainStyledAttributes(
                 attrs, R.styleable.GraphBars, defStyle, 0);
 
-        // mExampleColor = a.getColor(
-        //         R.styleable.GraphBars_exampleColor,
-        //         mExampleColor);
-        //
-        // if (a.hasValue(R.styleable.GraphBars_exampleDrawable)) {
-        //     mExampleDrawable = a.getDrawable(
-        //             R.styleable.GraphBars_exampleDrawable);
-        //     mExampleDrawable.setCallback(this);
-        // }
-        //
-        // a.recycle();
-        //
-        textPaint = new TextPaint();
-        textPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
-        textPaint.setTextAlign(Paint.Align.CENTER);
+        background = new BackgroundGradient(R.color.md_theme_light_primaryContainer, getContext());
+
+        a.recycle();
         invalidateTextPaintAndMeasurements();
     }
 
     private void invalidateTextPaintAndMeasurements() {
-        textPaint.setTextSize(24f);
-        textPaint.setColor(Color.BLACK);
-        textPaint.setStyle(Paint.Style.FILL);
     }
 
     @Override
@@ -70,8 +56,8 @@ public class GraphBars extends View {
         super.onDraw(canvas);
         int contentWidth = getWidth();
         int contentHeight = getHeight();
-        canvas.drawRect(0, contentHeight - 80, contentWidth, contentHeight, Color.argb(0.2, 0.3, 0.3, 1));
 
+        background.draw(canvas);
         // canvas.drawText(mExampleString,
         //         paddingLeft + (contentWidth - mTextWidth) / 2,
         //         paddingTop + (contentHeight + mTextHeight) / 2,
@@ -93,6 +79,10 @@ public class GraphBars extends View {
 
         heightSize = (int) Math.max(heightSize, MIN_HEIGHT * density);
         setMeasuredDimension(widthSize, heightSize);
+
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        float bottomHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, BOTTOM_HEIGHT, metrics);
+        background.resizeGradient((int) (heightSize - bottomHeight));
     }
 
     public void setCurrentConsumption(float consumption) {
