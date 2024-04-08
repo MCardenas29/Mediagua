@@ -1,4 +1,4 @@
-package mx.mcardenas.mediagua.views;
+package mx.mcardenas.mediagua.views.graphs;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,28 +11,23 @@ import android.view.View;
 import mx.mcardenas.mediagua.BackgroundGradient;
 import mx.mcardenas.mediagua.R;
 
-public class GraphBars extends View {
-    private final float PADDING = 5.0f;
-    private final float GAP = 8.0f;
+public class Graph extends View {
     private final int MIN_HEIGHT = 200;
     public final int BOTTOM_HEIGHT = 60;
 
-    private float mCurrentConsumption = 0;
-
     private BackgroundGradient background;
+    private VerticalDisplay display;
 
 
-    public GraphBars(Context context) {
+    public Graph(Context context) {
         super(context);
         init(null, 0);
     }
-
-    public GraphBars(Context context, AttributeSet attrs) {
+    public Graph(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs, 0);
     }
-
-    public GraphBars(Context context, AttributeSet attrs, int defStyle) {
+    public Graph(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(attrs, defStyle);
     }
@@ -43,6 +38,12 @@ public class GraphBars extends View {
                 attrs, R.styleable.GraphBars, defStyle, 0);
 
         background = new BackgroundGradient(R.color.md_theme_light_primaryContainer, getContext());
+        DisplayBuilder builder = new DisplayBuilder(new Label[] {
+                new Label("Hola"),
+                new Label("Mundo"),
+                new Label("EEEE")
+            }, 400f/3f);
+        display = builder.createVertical();
 
         a.recycle();
         invalidateTextPaintAndMeasurements();
@@ -56,18 +57,8 @@ public class GraphBars extends View {
         super.onDraw(canvas);
         int contentWidth = getWidth();
         int contentHeight = getHeight();
-
         background.draw(canvas);
-        // canvas.drawText(mExampleString,
-        //         paddingLeft + (contentWidth - mTextWidth) / 2,
-        //         paddingTop + (contentHeight + mTextHeight) / 2,
-        //         mTextPaint);
-
-        // if (mExampleDrawable != null) {
-        //     mExampleDrawable.setBounds(paddingLeft, paddingTop,
-        //             paddingLeft + contentWidth, paddingTop + contentHeight);
-        //     mExampleDrawable.draw(canvas);
-        // }
+        display.draw(canvas);
     }
 
     @Override
@@ -83,16 +74,5 @@ public class GraphBars extends View {
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         float bottomHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, BOTTOM_HEIGHT, metrics);
         background.resizeGradient((int) (heightSize - bottomHeight));
-    }
-
-    public void setCurrentConsumption(float consumption) {
-        if (this.mCurrentConsumption == consumption)
-            return;
-        this.mCurrentConsumption = consumption;
-        invalidate();
-    }
-
-    public float getCurrentConsumption() {
-        return mCurrentConsumption;
     }
 }
