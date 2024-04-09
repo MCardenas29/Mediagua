@@ -10,10 +10,19 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.Toast;
+
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
+import java.util.ArrayList;
 
 import mx.mcardenas.mediagua.R;
 import mx.mcardenas.mediagua.activities.MainActivity;
+import mx.mcardenas.mediagua.adapters.ExpensesAdapter;
 import mx.mcardenas.mediagua.databinding.FragmentBillBinding;
+import mx.mcardenas.mediagua.models.ExpenseModel;
+import mx.mcardenas.mediagua.viewmodels.BillViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +33,7 @@ public class BillFragment extends Fragment {
     FragmentBillBinding binding;
     ObjectAnimator rotateAnimation, scrollAnimation;
     boolean isStopCockOpen = false;
+
 
     public BillFragment() {
         // Required empty public constructor
@@ -57,9 +67,9 @@ public class BillFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentBillBinding.inflate(inflater, container, false);
+        binding.setBillViewModel(new BillViewModel());
 
         return binding.getRoot();
     }
@@ -75,6 +85,28 @@ public class BillFragment extends Fragment {
         scrollAnimation.setIntValues(-image_height, 10);
 
         binding.stopcockSwitch.setOnClickListener(this::stopCockAnimate);
+        ArrayList<ExpenseModel> list = new ArrayList<>();
+        list.add(new ExpenseModel("Elel", 200f, 120, 431));
+        list.add(new ExpenseModel("Pepe", 20f, 512, 511));
+        list.add(new ExpenseModel("Pepe", 20f, 512, 511));
+        list.add(new ExpenseModel("Pepe", 20f, 512, 511));
+        list.add(new ExpenseModel("Pepe", 20f, 512, 511));
+        list.add(new ExpenseModel("Pepe", 20f, 512, 511));
+        list.add(new ExpenseModel("Pepe", 20f, 512, 511));
+        list.add(new ExpenseModel("Pepe", 20f, 512, 511));
+        list.add(new ExpenseModel("Pepe", 20f, 512, 511));
+        list.add(new ExpenseModel("Pepe", 20f, 512, 511));
+        list.add(new ExpenseModel("Pepe", 20f, 512, 511));
+        binding.expensesRecycle.setAdapter(new ExpensesAdapter(list));
+        binding.expensesRecycle.setHasFixedSize(true);
+
+        BottomSheetBehavior<FrameLayout> behaviour = BottomSheetBehavior.from(binding.standardBottomSheet);
+        behaviour.setHideable(false);
+        behaviour.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        behaviour.setPeekHeight(170, true);
+        binding.bottomHandler.setOnClickListener(v -> {
+            behaviour.setState(behaviour.getState() == BottomSheetBehavior.STATE_COLLAPSED ? BottomSheetBehavior.STATE_EXPANDED : BottomSheetBehavior.STATE_COLLAPSED);
+        });
     }
 
     @Override

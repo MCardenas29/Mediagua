@@ -1,129 +1,337 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    tools:ignore="HardcodedText"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".fragments.BillFragment"
+    tools:ignore="HardcodedText">
+
+    <data>
+
+        <variable
+            name="billViewModel"
+            type="mx.mcardenas.mediagua.viewmodels.BillViewModel" />
+    </data>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".fragments.BillFragment"
-        >
-        <LinearLayout
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/md_theme_light_primaryContainer">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/md_theme_light_background"
+                    android:clipToPadding="false"
+                    android:padding="20dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        style="@style/Widget.Material3.CardView.Elevated"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true">
+
+                        <ImageView
+                            android:id="@+id/water"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitXY"
+                            android:scaleY="1.15"
+                            android:src="@drawable/water" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="20dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                tools:ignore="UseCompoundDrawables">
+
+                                <ImageView
+                                    android:layout_width="9pt"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/outline_water_drop_24" />
+
+                                <TextView
+                                    style="@style/TextAppearance.Material3.LabelLarge"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="@{String.valueOf(billViewModel.metersConsumed)}" />
+
+                                <TextView
+                                    style="@style/TextAppearance.Material3.LabelLarge"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="3dp"
+                                    android:text="m³" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/TextAppearance.Material3.ActionBar.Title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="$"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    style="@style/TextAppearance.Material3.ActionBar.Title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:text='@{String.format("%,.2f", billViewModel.reciptPrice)}'
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                style="@style/TextAppearance.Material3.LabelMedium"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{billViewModel.currentRange}" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/TextAppearance.Material3.LabelMedium"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tarifa:" />
+
+                                <TextView
+                                    style="@style/TextAppearance.Material3.LabelMedium"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="3dp"
+                                    android:text="@{billViewModel.currentFee}" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <RelativeLayout
+                        android:id="@+id/stopcock_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="150dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="-30dp"
+                        android:translationZ="1dp">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="stopCockBody"
+                            android:src="@drawable/pvcpipe" />
+
+                        <ImageView
+                            android:id="@+id/handle"
+                            android:layout_width="150dp"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="stopCockHandle"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/handle" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@color/material_dynamic_primary95" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="fill_vertical"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.Material3.TitleMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp"
+                        android:text="Gastos estimados"
+                        android:textAlignment="center" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/expenses_recycle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="170px"
+                        android:nestedScrollingEnabled="false"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <FrameLayout
+            android:id="@+id/standard_bottom_sheet"
+            style="@style/Widget.Material3.BottomSheet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            >
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:clipToPadding="false"
-                >
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_centerVertical="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.Material3.CardView.Elevated"
-                    >
-                    <ImageView
-                        android:id="@+id/water"
-                        android:src="@drawable/water"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:scaleType="fitXY"
-                        android:scaleY="1.15"
-                        />
-                    <LinearLayout
-                        android:padding="20dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        >
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            tools:ignore="UseCompoundDrawables">
-                            <ImageView
-                                android:layout_width="9pt"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/outline_water_drop_24"
-                                android:adjustViewBounds="true"
-                                />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="120 m³"
-                                style="@style/TextAppearance.Material3.LabelLarge"
-                                android:layout_gravity="center"
-                                />
-                        </LinearLayout>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/TextAppearance.Material3.ActionBar.Title"
-                            android:text="$ 120,000.00"
-                            android:textStyle="bold"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/TextAppearance.Material3.LabelMedium"
-                            android:text="Excedente"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/TextAppearance.Material3.LabelMedium"
-                            android:text="Tarifa: Domestica A"
-                            />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="150dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="-30dp"
-                    android:layout_centerVertical="true"
-                    android:translationZ="1dp"
-                    android:id="@+id/stopcock_switch"
-                    >
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/pvcpipe"
-                        android:contentDescription="stopCockBody"
-                        />
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="match_parent"
-                        android:scaleType="fitCenter"
-                        android:adjustViewBounds="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/handle"
-                        android:id="@+id/handle"
-                        android:contentDescription="stopCockHandle"
-                        />
-                </RelativeLayout>
-            </RelativeLayout>
-            <mx.mcardenas.mediagua.views.graphs.Graph
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:barWidth="30"
-                />
+            android:padding="10dp"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:background="@color/md_theme_light_primaryContainer"
-                />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <!-- -->
-        </LinearLayout>
+                <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/bottom_handler"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+            </LinearLayout>
+        </FrameLayout>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
