@@ -1,8 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.devtools.kps)
+    alias(libs.plugins.google.devtools.kps)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.google.dagger.hilt)
 }
 
 android {
@@ -84,4 +85,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.navigation.dynamic.features.fragment)
     implementation(libs.androidx.navigation.compose)
+    // Dagger
+    implementation(libs.dagger.hilt)
+    ksp(libs.dagger.hilt.compiler)
 }
