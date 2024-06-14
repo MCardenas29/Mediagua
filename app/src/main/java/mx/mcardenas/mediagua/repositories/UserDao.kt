@@ -8,19 +8,19 @@ import androidx.room.Query
 import mx.mcardenas.mediagua.models.User
 
 @Dao
-interface UserDAO {
+interface UserDao {
     @Query("SELECT * FROM user")
-    fun getAll(): List<User>
+    suspend fun getAll(): List<User>
 
     @Query("SELECT * FROM user WHERE email = :mail")
-    fun getByMail(mail: String): User
+    suspend fun getByMail(mail: String): User
 
     @Query("SELECT count(id) FROM user")
     fun countUsers(): LiveData<Int>
 
     @Insert
-    fun insertAll(vararg users: User)
+    suspend fun insertAll(vararg users: User)
 
     @Delete
-    fun delete(user: User)
+    suspend fun delete(user: User)
 }
